@@ -34,8 +34,8 @@ export default function Nav({ path }) {
             key={id}
             href={href}
             className={
-              'flex flex-col justify-center items-center gap-1 text-slate-500 hover:text-black' +
-              (path === href && ' text-black')
+              'flex flex-col justify-center items-center gap-1 hover:text-black' +
+              (path === href ? ' text-black' : ' text-slate-500')
             }
           >
             {icon === 'FaHome' && <FaHome className="text-2xl" />}

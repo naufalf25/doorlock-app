@@ -4,7 +4,7 @@ import TakePhoto from '@/components/root/TakePhoto';
 export default function Home() {
   return (
     <Layout title="halaman dashboard" uid="0123456789" path="/">
-      <main>
+      <main className="min-h-[75vh]">
         <TakePhoto className="mt-6" />
       </main>
     </Layout>

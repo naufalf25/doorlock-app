@@ -1,4 +1,9 @@
+'use client';
+
+import { auth } from '@/utils/db';
+import { signOut } from 'firebase/auth';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { FaHome, FaPhotoVideo, FaSignOutAlt } from 'react-icons/fa';
 import { IoNotifications } from 'react-icons/io5';
 
@@ -18,14 +23,24 @@ const nav = [
     href: '/notifications',
     icon: 'IoNotifications',
   },
-  {
-    id: 'sign out',
-    href: '/logout',
-    icon: 'FaSignOutAlt',
-  },
 ];
 
 export default function Nav({ path }) {
+  const router = useRouter();
+
+  const logOut = (e) => {
+    e.preventDefault();
+
+    try {
+      signOut(auth);
+
+      router.push('/user/login');
+    } catch (error) {
+      alert('Error! Harap hubungi admin');
+      console.log(error);
+    }
+  };
+
   return (
     <div className="mt-10 w-full p-4 sticky left-0 bottom-0 bg-slate-300 border-t">
       <nav className="flex justify-evenly items-center gap-4 text-sm">
@@ -47,6 +62,13 @@ export default function Nav({ path }) {
             <p className="capitalize">{id}</p>
           </Link>
         ))}
+        <button
+          onClick={logOut}
+          className="flex flex-col justify-center items-center gap-1 hover:text-black text-slate-500"
+        >
+          <FaSignOutAlt className="text-2xl" />
+          <p className="capitalize">sign out</p>
+        </button>
       </nav>
     </div>
   );

@@ -1,9 +1,8 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { IoMdDownload } from 'react-icons/io';
-import Button from '../root/Button';
+import Link from 'next/link';
 
-export default function PhotoItem({ imageUrl, date, time }) {
+export default async function PhotoItem({ imageUrl, date, time }) {
   return (
     <div className="p-4">
       <div className="border rounded-lg">
@@ -33,10 +32,16 @@ export default function PhotoItem({ imageUrl, date, time }) {
           </div>
         </div>
         <div className="m-2">
-          <Button className="w-full py-2 px-6 border border-blue-950 rounded-lg flex justify-center items-center gap-2">
+          <Link
+            href={imageUrl}
+            download
+            target="_blank"
+            referrerPolicy="no-referrer"
+            className="w-full py-2 px-6 border border-blue-950 rounded-lg flex justify-center items-center gap-2"
+          >
             <IoMdDownload className="text-xl" />
             <p>Download Gambar</p>
-          </Button>
+          </Link>
         </div>
       </div>
     </div>

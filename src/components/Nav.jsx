@@ -23,6 +23,11 @@ const nav = [
     href: '/notifications',
     icon: 'IoNotifications',
   },
+  {
+    id: 'sign out',
+    href: '/user/logout',
+    icon: 'FaSignOutAlt',
+  },
 ];
 
 export default function Nav({ path }) {
@@ -62,13 +67,13 @@ export default function Nav({ path }) {
             <p className="capitalize">{id}</p>
           </Link>
         ))}
-        <button
+        {/* <button
           onClick={logOut}
           className="flex flex-col justify-center items-center gap-1 hover:text-black text-slate-500"
         >
           <FaSignOutAlt className="text-2xl" />
           <p className="capitalize">sign out</p>
-        </button>
+        </button> */}
       </nav>
     </div>
   );

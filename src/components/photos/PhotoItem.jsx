@@ -1,14 +1,17 @@
 import Image from 'next/image';
 import { IoMdDownload } from 'react-icons/io';
 import Link from 'next/link';
+import { formattedDateAndTimeEpoch } from '@/utils/data';
 
-export default async function PhotoItem({ imageUrl, date, time }) {
+export default function PhotoItem({ data }) {
+  const { date, time } = formattedDateAndTimeEpoch(data.timestamp);
+
   return (
     <div className="p-4">
       <div className="border rounded-lg">
         <div className="w-full">
           <Image
-            src={imageUrl}
+            src={data.imageUrl}
             alt="latestImage"
             width={1600}
             height={1200}
@@ -33,7 +36,7 @@ export default async function PhotoItem({ imageUrl, date, time }) {
         </div>
         <div className="m-2">
           <Link
-            href={imageUrl}
+            href={data.imageUrl}
             download
             target="_blank"
             referrerPolicy="no-referrer"

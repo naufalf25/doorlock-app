@@ -5,7 +5,7 @@ import { signOut } from 'firebase/auth';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FaHome, FaPhotoVideo, FaSignOutAlt } from 'react-icons/fa';
-import { IoNotifications } from 'react-icons/io5';
+import { IoNotifications, IoMenu } from 'react-icons/io5';
 
 const nav = [
   {
@@ -23,10 +23,15 @@ const nav = [
     href: '/notifications',
     icon: 'IoNotifications',
   },
+  // {
+  //   id: 'sign out',
+  //   href: '/user/logout',
+  //   icon: 'FaSignOutAlt',
+  // },
   {
-    id: 'sign out',
-    href: '/user/logout',
-    icon: 'FaSignOutAlt',
+    id: 'menu',
+    href: '/menu',
+    icon: 'IoMenu',
   },
 ];
 
@@ -64,6 +69,7 @@ export default function Nav({ path }) {
               <IoNotifications className="text-2xl" />
             )}
             {icon === 'FaSignOutAlt' && <FaSignOutAlt className="text-2xl" />}
+            {icon === 'IoMenu' && <IoMenu className="text-2xl" />}
             <p className="capitalize">{id}</p>
           </Link>
         ))}

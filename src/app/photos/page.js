@@ -3,7 +3,7 @@ import PhotoLists from '@/components/photos/PhotoLists';
 
 export default function Photos() {
   return (
-    <Layout title="halaman riwayat foto" uid="0123456789" path="/photos">
+    <Layout title="halaman riwayat foto" path="/photos">
       <PhotoLists />
     </Layout>
   );

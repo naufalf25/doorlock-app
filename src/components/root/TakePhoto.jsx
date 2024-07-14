@@ -19,6 +19,8 @@ export default function TakePhoto({
               alt="latestImage"
               width={1600}
               height={1200}
+              priority
+              className="w-full"
             />
           </div>
           <div className="px-4 py-2 text-sm md:text-base">
@@ -46,8 +48,12 @@ export default function TakePhoto({
         <p className="mt-1 font-semibold text-lg">
           {lock ? 'Terkunci' : 'Tidak Terkunci'}
         </p>
-        <Button onClick={openLockEvent} className="mt-4 text-lg">
-          {openLock ? 'Kunci Pintu Kembali' : 'Buka Kunci Pintu'}
+        <Button
+          onClick={openLockEvent}
+          className="mt-4 text-lg"
+          disabled={openLock ? true : false}
+        >
+          {openLock ? 'Menunggu pintu kembali terkunci' : 'Buka Kunci Pintu'}
         </Button>
       </div>
     </div>

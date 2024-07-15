@@ -1,6 +1,5 @@
 'use client';
 
-// import { useAuthContext } from './AuthContext';
 import { useEffect, useState } from 'react';
 import Nav from './Nav';
 import Navbar from './Navbar';
@@ -35,7 +34,7 @@ export default function Layout({ children, title, path }) {
         setLoading(false);
 
         setUid(user.uid);
-        requestPermission();
+        // requestPermission();
       }
     });
   }, [router]);

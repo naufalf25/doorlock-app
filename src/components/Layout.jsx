@@ -35,10 +35,9 @@ export default function Layout({ children, title, path }) {
         setLoading(false);
 
         setUid(user.uid);
+        requestPermission();
       }
     });
-
-    requestPermission();
   }, [router]);
 
   if (loading) {

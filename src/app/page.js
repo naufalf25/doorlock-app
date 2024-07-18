@@ -3,7 +3,7 @@ import Root from '@/components/root/Root';
 
 export default function Home() {
   return (
-    <Layout title="halaman dashboard" path="/">
+    <Layout title="kunci pintuku" path="/">
       <Root />
     </Layout>
   );

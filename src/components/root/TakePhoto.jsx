@@ -19,6 +19,7 @@ export default function TakePhoto({
               alt="latestImage"
               width={1600}
               height={1200}
+              priority
             />
           </div>
           <div className="px-4 py-2 text-sm md:text-base">

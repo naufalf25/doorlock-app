@@ -1,6 +1,5 @@
 'use client';
 
-// import { useAuthContext } from './AuthContext';
 import { useEffect, useState } from 'react';
 import Nav from './Nav';
 import Navbar from './Navbar';

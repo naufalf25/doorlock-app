@@ -18,12 +18,16 @@ export default function PhotoLists() {
           datas.push(getData[key]);
         }
 
-        setImageLists(
-          datas.sort(
-            (a, b) =>
-              new Date(b.timestamp * 1000) - new Date(a.timestamp * 1000)
-          )
-        );
+        if (datas.length > 1) {
+          setImageLists(
+            datas.sort(
+              (a, b) =>
+                new Date(b.timestamp * 1000) - new Date(a.timestamp * 1000)
+            )
+          );
+        } else {
+          setImageLists(datas);
+        }
       }
     });
   }, []);

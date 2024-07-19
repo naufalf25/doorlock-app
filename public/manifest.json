@@ -1,0 +1,23 @@
+{
+  "id": "kunci-pintuku-1",
+  "name": "Kunci Pintuku App",
+  "short_name": "Kunci Pintuku",
+  "description": "Aplikasi website kunci pintu ESP32",
+  "start_url": "/",
+  "icons":[
+    {
+      "src":"/android-chrome-192x192.png",
+      "sizes":"192x192",
+      "type":"image/png"
+      },
+      {
+        "src":"/android-chrome-512x512.png",
+        "sizes":"512x512",
+        "type":"image/png"
+      }
+    ],
+  "theme_color": "#2E236C",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "orientation": "portrait"
+}

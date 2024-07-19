@@ -5,13 +5,14 @@ import Nav from './Nav';
 import Navbar from './Navbar';
 import Loading from './Loading';
 import { onAuthStateChanged } from 'firebase/auth';
-import { app, auth } from '@/utils/db';
+import { app, auth, database } from '@/utils/db';
 import { useRouter } from 'next/navigation';
 import useFcmToken from '@/utils/hooks/useFcmToken';
 import { getMessaging, onMessage } from 'firebase/messaging';
 
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { ref, update } from 'firebase/database';
 
 const MySwal = withReactContent(Swal);
 
@@ -36,13 +37,20 @@ export default function Layout({ children, title, path }) {
   fcmToken && console.log('FCM token: ', fcmToken);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (!user) {
         router.push('/user/login');
       } else {
         setLoading(false);
 
         setUid(user.uid);
+
+        if (fcmToken) {
+          const updates = {};
+          updates[`${user.uid}/fcmToken`] = fcmToken;
+
+          await update(ref(database), updates);
+        }
 
         if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
           const messaging = getMessaging(app);
@@ -70,7 +78,7 @@ export default function Layout({ children, title, path }) {
         }
       }
     });
-  }, [router]);
+  }, [fcmToken, router]);
 
   if (loading) {
     return <Loading />;

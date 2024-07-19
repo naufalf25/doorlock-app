@@ -1,9 +1,9 @@
 {
   "name": "project-door-lock",
-  "version": "0.9.9",
+  "version": "0.9.10",
   "private": true,
   "scripts": {
-    "dev": "cra-append-sw --mode dev --env ./env.local ./firebase-messaging-sw.js && next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

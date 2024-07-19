@@ -3,7 +3,7 @@
   "version": "0.9.9",
   "private": true,
   "scripts": {
-    "predev": "cra-append-sw --mode dev ./firebase-messaging-sw.js",
+    "predev": "cra-append-sw --mode dev --env ./env.local ./firebase-messaging-sw.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

@@ -12,7 +12,8 @@ import { getMessaging, onMessage } from 'firebase/messaging';
 
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { ref, update } from 'firebase/database';
+// import { ref, update } from 'firebase/database';
+// import { getRTDB } from '@/services/firebase';
 
 const MySwal = withReactContent(Swal);
 
@@ -28,6 +29,30 @@ const Toast = MySwal.mixin({
   },
 });
 
+// async function callNotification(fcmToken, accessToken, title, body) {
+//   const res = await fetch(
+//     `https://fcm.googleapis.com/v1/projects/${process.env.NEXT_PUBLIC_PROJECT_ID}/messages:send`,
+//     {
+//       method: 'POST',
+//       headers: {
+//         Authorization: `Bearer ${accessToken}`,
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         message: {
+//           token: fcmToken,
+//           notification: {
+//             body,
+//             title,
+//           },
+//         },
+//       }),
+//     }
+//   );
+
+//   return res.json();
+// }
+
 export default function Layout({ children, title, path }) {
   const [loading, setLoading] = useState(true);
   const [uid, setUid] = useState('');
@@ -42,18 +67,44 @@ export default function Layout({ children, title, path }) {
         router.push('/user/login');
       } else {
         setLoading(false);
-
         setUid(user.uid);
 
-        if (fcmToken) {
-          const updates = {};
-          updates[`${user.uid}/fcmToken`] = fcmToken;
+        // const getAccessToken = await fetch(
+        //   `${process.env.NEXT_PUBLIC_URL}/api/generate/token`
+        // );
 
-          await update(ref(database), updates);
-        }
+        // const { display, title, body } = await getRTDB(
+        //   `${user.uid}/currentNotif`
+        // );
+
+        // if (fcmToken) {
+        //   const updates = {};
+        //   updates[`${user.uid}/fcmToken`] = fcmToken;
+
+        //   await update(ref(database), updates);
+        // }
+
+        // if (display && fcmToken) {
+        //   const updates = {};
+        //   updates[`${user.uid}/currentNotif/display`] = false;
+        //   await update(ref(database), updates);
+
+        //   const { accessToken } = await getAccessToken.json();
+
+        //   if (accessToken) {
+        //     const callNotif = await callNotification(
+        //       fcmToken,
+        //       accessToken,
+        //       title,
+        //       body
+        //     );
+        //     console.log(callNotif);
+        //   }
+        // }
 
         if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
           const messaging = getMessaging(app);
+
           const unsubsribe = onMessage(messaging, (payload) => {
             console.log('Foreground push notification received: ', payload);
 
@@ -78,7 +129,7 @@ export default function Layout({ children, title, path }) {
         }
       }
     });
-  }, [fcmToken, router]);
+  });
 
   if (loading) {
     return <Loading />;

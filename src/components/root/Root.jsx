@@ -21,10 +21,10 @@ export default function Root() {
         const getImage = await getRTDB(`${user.uid}/latestImage`);
         setImageData(getImage);
 
-        const getLockCondition = await getRTDB(`${user.uid}/doorLock`);
+        const getLockCondition = await getRTDB(`${user.uid}/door/doorLock`);
         setLock(getLockCondition === 1 ? true : false);
 
-        const getLockIndicator = await getRTDB(`${user.uid}/openLock`);
+        const getLockIndicator = await getRTDB(`${user.uid}/door/openLock`);
         setOpenLock(getLockIndicator === 1 ? true : false);
       }
     });
@@ -35,7 +35,7 @@ export default function Root() {
 
     const updates = {};
     if (uid) {
-      updates[`${uid}/takeImage`] = 1;
+      updates[`${uid}/door/takeImage`] = 1;
     }
 
     await update(ref(database), updates);
@@ -47,11 +47,11 @@ export default function Root() {
     const updates = {};
     if (uid) {
       if (openLock === true) {
-        updates[`${uid}/openLock`] = 0;
+        updates[`${uid}/door/openLock`] = 0;
 
         setOpenLock(false);
       } else {
-        updates[`${uid}/openLock`] = 1;
+        updates[`${uid}/door/openLock`] = 1;
 
         setOpenLock(true);
       }

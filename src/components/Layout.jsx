@@ -12,7 +12,7 @@ import { getMessaging, onMessage } from 'firebase/messaging';
 
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-// import { ref, update } from 'firebase/database';
+import { ref, update } from 'firebase/database';
 // import { getRTDB } from '@/services/firebase';
 
 const MySwal = withReactContent(Swal);
@@ -77,12 +77,12 @@ export default function Layout({ children, title, path }) {
         //   `${user.uid}/currentNotif`
         // );
 
-        // if (fcmToken) {
-        //   const updates = {};
-        //   updates[`${user.uid}/fcmToken`] = fcmToken;
+        if (fcmToken) {
+          const updates = {};
+          updates[`${user.uid}/fcmToken`] = fcmToken;
 
-        //   await update(ref(database), updates);
-        // }
+          await update(ref(database), updates);
+        }
 
         // if (display && fcmToken) {
         //   const updates = {};

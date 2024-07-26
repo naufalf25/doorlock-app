@@ -3,6 +3,8 @@ import { JWT } from 'google-auth-library';
 const firebaseEmail = process.env.CLIENT_EMAIL;
 const firebasePrivateKey = process.env.PRIVATE_KEY.replace(/\\n/g, '\n');
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   const tokens = await new Promise(function (resolve, reject) {
     const jwtClient = new JWT({

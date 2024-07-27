@@ -21,10 +21,7 @@ export default function NotificationLists() {
 
         if (datas.length > 1) {
           setNotificationList(
-            datas.sort(
-              (a, b) =>
-                new Date(b.timestamp * 1000) - new Date(a.timestamp * 1000)
-            )
+            datas.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
           );
         } else {
           setNotificationList(datas);

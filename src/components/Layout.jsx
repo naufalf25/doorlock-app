@@ -61,13 +61,6 @@ export default function Layout({ children, title, path }) {
             const notificationTitle = payload.notification.title;
             const notificationMessage = payload.notification.body;
 
-            const timestamp = new Date().getTime();
-            set(ref(database, `${user.uid}/notifications/${timestamp}`), {
-              status: `${notificationTitle === 'Info' ? 'green' : 'yellow'}`,
-              message: notificationMessage,
-              timestamp,
-            });
-
             if (notificationTitle === 'Info') {
               Toast.fire({
                 icon: 'info',

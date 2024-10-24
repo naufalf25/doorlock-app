@@ -1,7 +1,7 @@
-import { showStandardFormattedDateAndTime } from '@/utils/data';
+import { showFormattedDateAndTime } from '@/utils/data';
 
 export default function NotificationItems({ status, timestamp, message }) {
-  const date = showStandardFormattedDateAndTime(timestamp);
+  const date = showFormattedDateAndTime(timestamp);
 
   return (
     <div className="mx-4 py-2 border-b border-dashed border-b-blue-950">

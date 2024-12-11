@@ -1,16 +1,17 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import TakePhoto from './TakePhoto';
-import { getRTDB } from '@/services/firebase';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth, database } from '@/utils/db';
-import { ref, update } from 'firebase/database';
+import { useEffect, useState } from "react";
+import TakePhoto from "./TakePhoto";
+import { getRTDB } from "@/services/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, database } from "@/utils/db";
+import { ref, update } from "firebase/database";
 
 export default function Root() {
   const [imageData, setImageData] = useState(null);
   const [lock, setLock] = useState(true);
   const [openLock, setOpenLock] = useState(false);
+  const [takeImage, setTakeImage] = useState(false);
   const [uid, setUid] = useState(null);
 
   useEffect(() => {
@@ -26,6 +27,9 @@ export default function Root() {
 
         const getLockIndicator = await getRTDB(`${user.uid}/door/openLock`);
         setOpenLock(getLockIndicator === 1 ? true : false);
+
+        const getTakeImageStatus = await getRTDB(`${user.uid}/door/takeImage`);
+        setTakeImage(getTakeImageStatus === 1 ? true : false);
       }
     });
   });
@@ -69,6 +73,7 @@ export default function Root() {
           openLock={openLock}
           takePhotoEvent={getImageEvent}
           openLockEvent={openCloseLock}
+          takeImage={takeImage}
           className="mt-6"
         />
       </main>

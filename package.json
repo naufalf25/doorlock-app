@@ -15,7 +15,7 @@
     "firebase": "^10.12.2",
     "google-auth-library": "^9.11.0",
     "local-cors-proxy": "^1.1.0",
-    "next": "14.2.4",
+    "next": "14.2.35",
     "nextjs-toploader": "^1.6.12",
     "react": "^18",
     "react-dom": "^18",
